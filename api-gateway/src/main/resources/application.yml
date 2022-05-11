@@ -1,0 +1,42 @@
+server:
+    port: 9191
+
+spring: 
+  application:
+     name : api-gateway
+  cloud:
+      gateway:
+          routes:
+            - id: login-service
+              uri: lb://login-service
+              predicates:
+                - Path=/login/** 
+            - id: negara-service
+              uri: lb://negara-service
+              predicates:
+                - Path=/negara/** 
+            - id: provinsi-service
+              uri: lb://provinsi-service
+              predicates: 
+                - Path=/provinsi/**                   
+            - id: kota-service
+              uri: lb://kota-service
+              predicates:
+                - Path=/kota/** 
+            - id: tws-service
+              uri: lb://tws-service
+              predicates:
+                - Path=/twsservice/** 
+            # - id: indonesia-administrative-service
+            #   uri: lb://indonesia-administrative-service
+            #   predicates:
+            # - Path=/administrative/** 
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
