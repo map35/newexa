@@ -42,7 +42,6 @@
 	  <div class="textfooter">
 	  <center> 
       <font-color=white>  (c) 2016 - 2022 PT. Bank Syariah Indonesia Tbk, All Right Reserved.
-
     </center>
   </div>
 	  </div>

@@ -135,56 +135,40 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Pencarian Nasabah/Rekening/CIF (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Pencarian Nasabah/Rekening/CIF)</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="number" class="form-control" onchange="getData()" aria-describedby="emailHelp"  id="cifnumberform">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Jenis Pembukaan (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Jenis Pembukaan</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="productcode" onchange="getData()>
                                                 <option selected>- Silahkan Pilih -</option>
-                                                <option value="1">TABUNGAN TAPENAS KOLEKTIF</option>
-                                                <option value="2">TABUNGAN TAPENAS REGULER</option>
-                                                <option value="3">TABUNGANKU WADIAH BANSOS</option>
-                                                <option value="4">TABUNGAN PENSIUN MUDHARABAH</option>
-                                                <option value="5">TABUNGAN PENSIUN WADIAH</option>
-                                                <option value="6">GIRO PERORANGAN </option>
-                                                <option value="7">GIRO WADIAH ESCROW</option>
-                                                <option value="8">GIRO PERORANGAN KHUSUS</option>
-                                                <option value="9">GIRO PERORANGAN UMUM</option>
-                                                <option value="10">TABUNGAN VALAS WADIAH</option>
-                                                <option value="11">TABUNGAN EASY WADIAH</option>
-                                                <option value="12">TABUNGANKU</option>
-                                                <option value="13">TABUNGAN EASY MUDHARABAH</option>
-                                                <option value="14">TABUNGAN HAJI WADIAH</option>
-                                                <option value="15">TABUNGAN HAJI MUDHARABAH</option>
-                                                <option value="16">TABUNGAN BISNIS</option>
-                                                <option value="17">TABUNGAN VALAS MUDHARABAH</option>
+                                                <option value="6020">TABUNGAN BISNIS</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Produk (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Produk</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="accountpurpose" onchange="getData()">
                                                 <option selected>- Silahkan Pilih -</option>                                          
                                                 <option value="1">HAJI</option>
                                                 <option value="2">INVESTASI</option>
@@ -199,7 +183,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Status (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Status</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
@@ -220,13 +204,13 @@
 
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label class="btn btn-info  role=" button">Submit</label>
+                                            <label class="btn btn-info"  role="button">Submit</label>
                                         </div>
                                     </div>
 
 
 
-                                    <table class="table table-striped mt-5">
+                                    <table id="data_tbl" class="table table-striped mt-5">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
@@ -240,39 +224,8 @@
                                                 <th scope="col">Tanggal Otorisasi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>PT. MAJU MUNDUR SUKSES</td>
-                                                <td>TABUNGAN BISNIS</td>
-                                                <td>77536381</td>
-                                                <td>2341567829</td>
-                                                <td>Nasabah Eksisting</td>
-                                                <td>Menunggu Otorisasi</td>
-                                                <td>18/04/2022 11:00:36 / Marisca</td>
-                                                <td>18/04/2022</td>
-                                                <td class="nav-link">
-                                                    <a href="/detail-otorisasi" class="btn">
-                                                        <i class="fa fa-folder"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                                <td>PT. MUNDUR MAJU SUKSES</td>
-                                                <td>TABUNGAN BISNIS</td>
-                                                <td>57823491</td>
-                                                <td>8943245186</td>
-                                                <td>Nasabah Eksisting</td>
-                                                <td>Berhasil</td>
-                                                <td>18/04/2022 14:11:21 / Aisyah</td>
-                                                <td>18/04/2022</td>
-                                                <td class="nav-link">
-                                                    <a href="/detail-otorisasi" class="btn">
-                                                        <i class="fa fa-folder"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                        <tbody id="account_data_tbl">
+                                            
                                         </tbody>
                                     </table>
 
@@ -280,8 +233,6 @@
 
                                 </div>
                             </div>
-
-                            
 
                         </form>
 
@@ -336,6 +287,353 @@
     </div>
     </div>
 
+    <div class="modal fade" id="account_detail_information_new" tabindex="-1" aria-labelledby="modalTambahBarang" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Informasi Nasabah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <!--FORM TAMBAH BARANG-->
+                    <form id="authorize-form">
+                                    @csrf
+                                    <div class="form-group " hidden>
+                                        <label for="">id</label>
+                                        <label type="text" class="form-control" id="id" aria-describedby="emailHelp">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Pembukaan Rekening</b></label>                 
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="">Jenis Produk</label>
+                                        <label type="text" class="form-control" id="productCode" aria-describedby="emailHelp">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tujuan Buka Rekening</label>
+                                        <label type="text" class="form-control" id="acOpenPurpose" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Mata Uang</label>
+                                        <label type="text" class="form-control" id="currency" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Bentuk Badan Usaha / Lembang</label>
+                                        <label type="text" class="form-control" id="businessType" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Data Nasabah</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Nama Lengkap</label>
+                                        <label type="text" class="form-control" id="name1" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Kewarganegaraan</label>
+                                        <label type="text" class="form-control" id="nationality" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Status Kependudukan</label>
+                                        <label type="text" class="form-control" id="status_kependudukan" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No.NPWP</label>
+                                        <label type="text" class="form-control" id="taxID" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Sumber Dana</label>
+                                        <label type="text" class="form-control" id="fundSource" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+                                    
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Data Perusahaan</b></label>                 
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label for="">Nama Perusahaan</label>
+                                        <label type="text" class="form-control" id="shortName" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Bidang Usaha</label>
+                                        <label type="text" class="form-control" id="sector" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Bidang Usaha</label>
+                                        <label type="text" class="form-control" id="bidang_usaha" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Laporan Keuangan</label>
+                                        <label type="text" class="form-control" id="laporan_keuangan" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Deskripsi Kegiatan Usaha</label>
+                                        <label type="text" class="form-control" id="deskripsi_usaha" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Alamat Perusahaan</label>
+                                        <label type="text" class="form-control" id="alamat_perusahaan" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">RT/RW</label>
+                                        <label type="text" class="form-control" id="RT" name="addJumlahBarang">
+                                        <!-- <label type="text" class="form-control" id="RW" name="addJumlahBarang"> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Provinsi</label>
+                                        <label type="text" class="form-control" id="provinsi" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Kabupaten/Kota</label>
+                                        <label type="text" class="form-control" id="kabupaten_kota" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Kode Pos</label>
+                                        <label type="text" class="form-control" id="kode_pos" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Negara</label>
+                                        <label type="text" class="form-control" id="negara" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. Telp Kantor</label>
+                                        <label type="text" class="form-control" id="no_telp_kantor" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Kel Fasilitas</label>
+                                        <label type="text" class="form-control" id="kel_fasilitas" name="addJumlahBarang">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Surat Perizinan Pendirian Perusahaan</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. Akta Pendirian</label>
+                                        <label type="text" class="form-control" id="no_akta_pendirian" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tgl. Akta Pendirian</label>
+                                        <label type="text" class="form-control" id="tgl_akta_pendirian" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. Akta SIUP</label>
+                                        <label type="text" class="form-control" id="no_akta_siup" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Penerbitan SIUP</label>
+                                        <label type="text" class="form-control" id="penerbitan_siup" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tgl. Berakhir SIUP</label>
+                                        <label type="text" class="form-control" id="tgl_berakhir_siup" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. SITU</label>
+                                        <label type="text" class="form-control" id="no_situ" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Penerbitan SITU</label>
+                                        <label type="text" class="form-control" id="penerbitan_situ" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tgl. Berakhir SITU</label>
+                                        <label type="text" class="form-control" id="tgl_berakhir_situ" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. SK Menteri</label>
+                                        <label type="text" class="form-control" id="no_sk_menteri" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Penerbitan SK Menteri</label>
+                                        <label type="text" class="form-control" id="penerbitan_sk_menteri" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tgl. Berakhir SK Menteri</label>
+                                        <label type="text" class="form-control" id="tgl_berakhir_sk_menteri" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">No. TDP</label>
+                                        <label type="text" class="form-control" id="no_tdp" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Penerbitan TDP</label>
+                                        <label type="text" class="form-control" id="penerbitan_tdp" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tgl. Berakhir TDP</label>
+                                        <label type="text" class="form-control" id="tgl_berakhir_tdp" name="addJumlahBarang">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Data Pengurus Perusahaan</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Nama Pengurus</label>
+                                        <label type="text" class="form-control" id="nama_pengurus" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Jabatan Pengurus</label>
+                                        <label type="text" class="form-control" id="jabatan_pengurus" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Kelompok Nasabah</label>
+                                        <label type="text" class="form-control" id="kelompok_nasabah" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Segment BUC</label>
+                                        <label type="text" class="form-control" id="segment_buc" name="addJumlahBarang">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Tambahan (Optional)</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Zakat</label>
+                                        <label type="text" class="form-control" id="zakat" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Biaya Kartu ATM</label>
+                                        <label type="text" class="form-control" id="biaya_kartu_atm" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Fasilitas E-Channel</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Fasilitas</label>
+                                        <label type="text" class="form-control" id="fasilitas" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label for=""><b>Informasi Lainnya</b></label>                 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+                                        <label type="text" class="form-control" id="status" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tanggal Permohonan</label>
+                                        <label type="text" class="form-control" id="tanggal_permohonan" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Tanggal Otorisasi</label>
+                                        <label type="text" class="form-control" id="tanggal_otorisasi" name="addJumlahBarang">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                    </div>  
+
+                                    <div>
+                                    <!-- 
+                                            <div class="col-lg-3">
+                                                <button for="exampleInputEmail1" class="btn btn-success float-right mb-1">Reject</button>
+                                            </div>
+                                            
+                                            <div class="col-lg-3">
+                                                <button for="exampleInputEmail1" class="btn btn-success float-right mb-1">Accept</button>
+                                            </div>
+                                        -->
+
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <a class="btn btn-danger float-right mb-1" onclick="authorizeAccountRejected(this)"><span style="color:white">Reject</span></a>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <a class="btn btn-info float-left mb-2" onclick="authorizeAccount(this)"><span style="color:white">Accept</span></a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                    </form>
+                    <!--END FORM TAMBAH BARANG-->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -353,6 +651,209 @@
     <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
 
+    <script>
+        function getData(){
+            // console.log(document.getElementById("accountpurpose").value);
+            // console.log(document.getElementById("productcode").value);
+            // console.log(document.getElementById("status").value);
+            // $("#account_data_tbl tbody").remove();
+            var table = document.getElementById("account_data_tbl");
+
+            while(table.rows.length > 0) {
+              table.deleteRow(0);
+            }
+
+            account_purpose = document.getElementById("accountpurpose").value;
+            product = document.getElementById("productcode").value;
+            // status = document.getElementById("status").value;
+            var cif_number= document.getElementById("cifnumberform").value;
+
+            if(document.getElementById("accountpurpose").value == "null"){
+                acOpenPurpose ="";
+            }
+            if(document.getElementById("productcode").value == "null"){
+                productCode ="";
+            }
+            // if(document.getElementById("status").value == "null"){
+            //     status ="";
+            // }
+            if(document.getElementById("cifnumberform").value == "null"){
+                cifNo ="";
+            }
+            $.ajax({
+                url: "/get-all-account",
+                method:"get",
+                data:{
+                    _token: "{{ csrf_token() }}",
+                    acOpenPurpose: account_purpose,
+                    productCode: product,
+                    status: "Waiting Authorization",
+                    cifNo: "%"+cif_number+"%",
+                    date_of_start:"",
+                    date_of_finish:""
+                },
+                success:function(response){
+                    console.log(response.message);
+                    console.log(response.data);
+                    var role = '{{ Session::get('user')->role;}}';;
+
+                    if(response.message == "Get all account success!") {
+                        var len = response.data.length;
+                        console.log(len);
+                        if(len>0){
+                            for( var i = 0; i<len; i++){
+                                var row = i+1;
+                            
+                                if(response.data[i].status == "1" && role != "2" && response.data[i].cifNo != ""){
+                                    console.log(response.data[i].shortName);
+                                    console.log(response.data[i].productCode);
+                                    console.log(response.data[i].cifNo);
+                                    
+                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' + " " 
+                                        +"</td> <td> <button type=\"button\" class=\"btn btn-success float-right mb-1\" data-toggle=\"modal\" data-target=\"#account_detail_information\" onclick=\"getDetailData(this)\" data-id="+response.data[i].id+" data-shortname="+response.data[i].shortName +">Otorisasi</button></td></tr>");
+                                    
+                                // }else if(response.data[i].status == "1" && role != "2" && response.data[i].cifNo  == ""){
+                                //     $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].product.description + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accountNo+ '</td> <td>' + response.data[i].retail.description + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName + " / " +response.data[i].userCreatedBranch +'</td> <td>' + " " 
+                                        
+                                //         +"</td> <td> <button type=\"button\" class=\"btn btn-success float-right mb-1\" data-toggle=\"modal\" data-target=\"#account_detail_information\" onclick=\"getDetailData(this)\" data-id="+response.data[i].id+" data-shortname="+response.data[i].shortName +" data-producttype = "+response.data[i].product.description +" data-productpurpose = "+response.data[i].retail.description+"  data-printedname = "+response.data[i].shortName+" data-legalnumber = "+response.data[i].customerCIF.legalIdNo+" data-placeofbirth = "+response.data[i].placeBirth+" data-dateofbirth = "+response.data[i].dateOfBirth+" data-mothername = "+response.data[i].mothMaiden+" data-zakat = "+response.data[i].zakatt.description+" data-accountofficer = "+response.data[i].accountOfficer+">Otorisasi</button></td></tr>");
+                                // }else if(response.data[i].status == "Rejected" ){
+                                //     $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].product.description + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accountNo+ '</td> <td>' + response.data[i].retail.description + '</td> <td style="color: red;">' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName + " / " +response.data[i].userCreatedBranch +'</td> <td>' + response.data[i].userApprovedDate + " /" + response.data[i].userApprovedTime + " / " +response.data[i].userApprovedByName + " / " +response.data[i].userApprovedBranch +'</td></tr>');
+                                // }else if(response.data[i].status != "Waiting Authorization" ){
+                                //     $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].product.description + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accountNo+ '</td> <td>' + response.data[i].retail.description + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName + " / " +response.data[i].userCreatedBranch +'</td> <td>' + response.data[i].userApprovedDate + " /" + response.data[i].userApprovedTime + " / " +response.data[i].userApprovedByName + " / " +response.data[i].userApprovedBranch +'</td></tr>');
+                                // }else{
+                                //     $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].product.description + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accountNo+ '</td> <td>' + response.data[i].retail.description + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName + " / " +response.data[i].userCreatedBranch +'</td> <td></td></tr>');
+                                }
+                            }
+                        }
+                    }else{
+                        Swal.fire({
+                            title: 'Error!!',
+                            text: response.message,
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonText: 'Yes!',
+                        }).then(function (e) {
+                            if (e.value === true) {
+                                window.location="{{url('/account-otorisasi')}}";
+                            }
+                        }, 
+                        function (dismiss) {
+                            return false;
+                        })
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function getDetailData(element){
+            console.log($(element).data('shortname'));
+            var id = $(element).data('id');
+            // var dateBirth = $(element).data('dateofbirth').toString();
+            // const myArray = dateBirth.split("");
+            // year = myArray[0]+myArray[1]+myArray[2]+myArray[3];
+            // month = myArray[4]+myArray[5];
+            // date = myArray[6]+myArray[7];
+
+            $('#id_account').text($(element).data('id'));
+            $('#nasabah_name').text($(element).data('shortname'));
+            $('#product_type').text($(element).data('producttype'));
+            $('#product_purpose').text($(element).data('productpurpose'));
+            $('#cif_number').text($(element).data('cifnumber'));
+            $('#printed_name').text($(element).data('printedname'));
+            $('#legal_number').text($(element).data('legalnumber'));
+            
+            $('#place_of_birth').text($(element).data('placeofbirth'));
+            $('#date_of_birth').text(date+" - "+month+" - "+year);
+            $('#mother_name').text($(element).data('mothername'));
+            $('#zakat').text($(element).data('zakat'));
+            $('#account_officer').text($(element).data('accountofficer'));
+        }
+
+        function authorizeAccount(element) {
+            let username = $("#nasabah_name").text();
+            let cif_number  = $("#cif_number").text();
+            let accountid  = $("#id_account").text();
+            // console.log(username);
+            // console.log(cif_number);
+
+            swal.fire({
+                title: "Are you sure to authorize "+username +"'s account?",
+                icon: 'question',
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                reverseButtons: !0
+            }).then(function (e) {
+   
+
+                if (e.value == true) {
+                    $.ajax({
+                        url: "/author-account",
+                        method:"post",
+                        data:{
+                            _token:"{{ csrf_token() }}",
+                            cif_number:cif_number,
+                            id: accountid
+                        },
+                        beforeSend : function(){
+                            $('#loading-bar').show();
+                        },
+                        success:function(response){
+                            $('#loading-bar').hide();
+                            console.log(response);
+                          if(response.message == "Authorization Account Success!" || response.message === "CIF Authorization Sucess!") {
+                            Swal.fire({
+                                title: 'Info',
+                                text: "Authorization "+ username+ "'s account success",
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonText: 'Yes!',
+                              }).then(function (e) {
+                                if (e.value == true) {
+                                    window.location="{{url('/account-otorisasi')}}";
+                                }
+
+                            }, function (dismiss) {
+                                return false;
+                            })
+                          }else{
+                            Swal.fire({
+                                title: 'Error!!',
+                                text: response.message,
+                                icon: 'error',
+                                showCancelButton: false,
+                                confirmButtonText: 'Yes!',
+                            }).then(function (e) {
+                                if (e.value == true) {
+                                    window.location="{{url('/account-otorisasi')}}";
+                                }
+
+                            }, 
+                            function (dismiss) {
+                                return false;
+                            })
+                          }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+
+
+                } else {
+                    e.dismiss;
+                }
+
+            }, function (dismiss) {
+                return false;
+            })
+        }   
+    </script>    
 </body>
 
 </html>

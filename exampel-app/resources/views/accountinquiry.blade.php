@@ -40,7 +40,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload ="getData()">
     <div class="dashboard-main">
 
         <!-- Topbar -->
@@ -134,94 +134,81 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Tanggal pembukaan (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Tanggal pembukaan</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="col-lg-2">
-                                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="date" class="form-control" id="date1" aria-describedby="emailHelp" onload ="getData()">
                                         </div>
                                         <div class="mb-3 col-lg-2">
-                                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="date" class="form-control" id="date2" aria-describedby="emailHelp" onload ="getData()" max="{{ now()->toDateString('Y-m-d') }}">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Pencarian Nasabah/Rekening/CIF (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Pencarian Nasabah/Rekening/CIF</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="cifnumberform" aria-describedby="emailHelp" onchange="getData()">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Jenis Pembukaan (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Jenis Pembukaan</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="productcode" onchange="getData()">
                                                 <option selected>- Silahkan Pilih -</option>
-                                                <option value="1">TABUNGAN TAPENAS KOLEKTIF</option>
-                                                <option value="2">TABUNGAN TAPENAS REGULER</option>
-                                                <option value="3">TABUNGANKU WADIAH BANSOS</option>
-                                                <option value="4">TABUNGAN PENSIUN MUDHARABAH</option>
-                                                <option value="5">TABUNGAN PENSIUN WADIAH</option>
-                                                <option value="6">GIRO PERORANGAN </option>
-                                                <option value="7">GIRO WADIAH ESCROW</option>
-                                                <option value="8">GIRO PERORANGAN KHUSUS</option>
-                                                <option value="9">GIRO PERORANGAN UMUM</option>
-                                                <option value="10">TABUNGAN VALAS WADIAH</option>
-                                                <option value="11">TABUNGAN EASY WADIAH</option>
-                                                <option value="12">TABUNGANKU</option>
-                                                <option value="13">TABUNGAN EASY MUDHARABAH</option>
-                                                <option value="14">TABUNGAN HAJI WADIAH</option>
-                                                <option value="15">TABUNGAN HAJI MUDHARABAH</option>
-                                                <option value="16">TABUNGAN BISNIS</option>
-                                                <option value="17">TABUNGAN VALAS MUDHARABAH</option>
+                                                <option value="6020">TABUNGAN BISNIS</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Produk (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Produk</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="accountpurpose" onchange="getData()">
                                                 <option selected>- Silahkan Pilih -</option>
-                                                <option value="1">HAJI</option>
-                                                <option value="2">INVESTASI</option>
-                                                <option value="3">LAINNYA</option>
-                                                <option value="4">MENYIMPAN DANA</option>
-                                                <option value="5">PEMBAYARAN GAJI</option>
-                                                <option value="6">PINJAMAN</option>
-                                                <option value="7">TRANSAKSI UMROH</option>
+                                                <option value="22">HAJI</option>
+                                                <option value="13">INVESTASI</option>
+                                                <option value="15">LAINNYA</option>
+                                                <option value="11">MENYIMPAN DANA</option>
+                                                <option value="12">PEMBAYARAN GAJI</option>
+                                                <option value="14">PINJAMAN</option>
+                                                <option value="21">TRANSAKSI UMROH</option>                 
+                                                <option value="16">UMROH</option>  
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Status (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Status</label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" id="status" onchange="getData()">
                                                 <option selected>- Silahkan Pilih -</option>
-                                                <option value="1">KTP</option>
+                                                <option value="9">Reject</option>   
+                                                <option value="3">Success</option>   
+                                                <option value="1">Waiting Authorization</option>                                        
                                             </select>
                                         </div>
                                     </div>
@@ -238,8 +225,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <table class="table table-striped mt-5">
                                         <thead>
                                             <tr>
@@ -254,32 +239,10 @@
                                                 <th scope="col">Tanggal Otorisasi</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>PT. MAJU MUNDUR SUKSES</td>
-                                                <td>TABUNGAN BISNIS</td>
-                                                <td>77536381</td>
-                                                <td>2341567829</td>
-                                                <td>Nasabah Eksisting</td>
-                                                <td>Menunggu Otorisasi</td>
-                                                <td>18/04/2022 11:00:36 / Marisca</td>
-                                                <td>18/04/2022</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                                <td>PT. MUNDUR MAJU SUKSES</td>
-                                                <td>TABUNGAN BISNIS</td>
-                                                <td>57823491</td>
-                                                <td>8943245186</td>
-                                                <td>Nasabah Eksisting</td>
-                                                <td>Berhasil</td>
-                                                <td>18/04/2022 14:11:21 / Aisyah</td>
-                                                <td>18/04/2022</td>
-                                            </tr>
+                                        <tbody id="account_data_tbl">
+                                            
                                         </tbody>
                                     </table>
-
 
                                 </div>
 
@@ -292,7 +255,6 @@
 
                 </div>
                 <!-- End of Main Content -->
-
 
                 <!-- End of Footer -->
 
@@ -337,6 +299,111 @@
         </div>
     </div>
     </div>
+
+    <script>
+        function getData(){
+            // console.log(document.getElementById("accountpurpose").value);
+            // console.log(document.getElementById("productcode").value);
+            // console.log(document.getElementById("status").value);
+            // $("#account_data_tbl tbody").remove();
+            var table = document.getElementById("account_data_tbl");
+
+            while(table.rows.length > 0) {
+              table.deleteRow(0);
+            }
+
+            account_purpose = document.getElementById("accountpurpose").value;
+            product = document.getElementById("productcode").value;
+            status = document.getElementById("status").value;
+            cif_number= document.getElementById("cifnumberform").value;
+            date_start = document.getElementById("date1").value;
+            date_finish = document.getElementById("date2").value;
+
+            if(document.getElementById("accountpurpose").value == "null"){
+                account_purpose ="";
+            }
+            if(document.getElementById("productcode").value == "null"){
+                product ="";
+            }
+            if(document.getElementById("status").value == "null"){
+                status ="";
+            }
+            if(document.getElementById("cifnumberform").value == "null"){
+                cif_number ="";
+            }
+            if(document.getElementById("date1").value == ""){
+                date_start ="";
+            }else{
+                date_start1 = document.getElementById("date1").value.split("-")
+                date_start = date_start1[2]+"-"+date_start1[1]+"-"+date_start1[0]
+            }
+
+            if(document.getElementById("date2").value == ""){
+                date_finish ="";
+            }else{
+                date_finish1 = document.getElementById("date2").value.split("-")
+                date_finish = date_finish1[2]+"-"+date_finish1[1]+"-"+date_finish1[0]
+            }
+
+            $.ajax({
+                url: "/get-all-account",
+                method:"get",
+                data:{
+                    _token: "{{ csrf_token() }}",
+                    account_purpose: account_purpose,
+                    product: product,
+                    status: status,
+                    cif_number: "%"+cif_number+"%",
+                    date_of_start: date_start,
+                    date_of_finish: date_finish
+                },
+                success:function(response){
+                    console.log(response.message);
+                    console.log(response.data);
+                    var role = '{{ Session::get('user')->role;}}';;
+
+                    if(response.message == "Get all account success!") {
+                        var len = response.data.length;
+                        console.log(len);
+                        if(len>0){
+                            for( var i = 0; i<len; i++){
+                                var row = i+1;
+                            
+                                if(response.data[i].status == "3"){
+                                    console.log(response.data[i].shortName);
+                                    console.log(response.data[i].productCode);
+                                    console.log(response.data[i].cifNo);
+                                    
+                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' + " ");
+                                    
+                                }else if(response.data[i].status == "9"){
+                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' + " ");
+                                }      
+                            }
+                        }
+                    }else{
+                        Swal.fire({
+                            title: 'Error!!',
+                            text: response.message,
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonText: 'Yes!',
+                        }).then(function (e) {
+                            if (e.value === true) {
+                                window.location="{{url('/account-otorisasi')}}";
+                            }
+                        }, 
+                        function (dismiss) {
+                            return false;
+                        })
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

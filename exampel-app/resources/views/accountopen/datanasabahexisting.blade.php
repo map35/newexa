@@ -111,17 +111,17 @@
                             <h1 class="h3 mb-0 text-gray-800">Pembukaan Rekening</h1>
                         </div>
 
-                        <form action="" method="post">
-                            <div class="mb-3">
+                        <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Pilih Jenis Nasabah</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" id="state" name="state">
                                     <option selected>Select CIF</option>
-                                    <option value="1">CIF Perorangan</option>
-                                    <option value="2">CIF Anak</option>
-                                    <option value="3">CIF Perusahaan</option>
-                                    <option value="3">CIF Perseroan Perorangan</option>
+                                    <option value="qld">CIF Perorangan</option>
+                                    <option value="nsw">CIF Anak</option>
+                                    <option value="tbk">CIF Perusahaan</option>
                                 </select>
                             </div>
+
+                            <form action="" method="post" id="testform">
 
                             <hr>
 
@@ -137,7 +137,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Jenis Produk (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Jenis Produk <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
@@ -168,7 +168,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Tujuan Buka Rekening (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Tujuan Buka Rekening <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
@@ -190,13 +190,13 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">No CIF (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">No CIF <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" minlength="10">
                                         </div>
                                     </div>
 
@@ -208,7 +208,7 @@
                                           
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                        <button type="button" class="btn btn-info btn-cif">Cek CIF</button>
+                                        <button type="submit" class="btn btn-info btn-cif">Cek CIF</button>
                                         </div>
                                     </div>
 
@@ -218,43 +218,43 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nama Lengkap (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Nama Lengkap <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="35">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nama Tercetak (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Nama Tercetak <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="35">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Tempat Lahir (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Tempat Lahir <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="35">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Tanggal Lahir (ddmmyyyy) (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Tanggal Lahir (ddmmyyyy) <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
@@ -266,13 +266,13 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nama Ibu Kandung (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Nama Ibu Kandung <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="35">
                                         </div>
                                     </div>
 
@@ -282,7 +282,7 @@
 
                                     <div class="row">
                                     <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Zakat (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Zakat <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
@@ -300,13 +300,13 @@
 
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label for="exampleInputEmail1" class="form-label">Account Officer (*)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Account Officer <span style="color:red">*</span></label></label>
                                         </div>
                                         <div class="col-lg-1">
                                             <label for="exampleInputEmail1" class="form-label">:</label>
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="10">
                                         </div>
                                     </div>
 
@@ -388,6 +388,27 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").hide();
+        })
+
+        $("#state").change(function() {
+            stateChange($(this).val());
+        });
+
+        function stateChange(stateValue) {
+            $("form").hide();
+
+            switch (stateValue) {
+                case 'tbk':
+                    $("#testform").show();;
+                case 'qld':
+                    $("#testform2").show();;
+                    // so on and so on...
+            }
+        }
+    </script>
 
 </body>
 

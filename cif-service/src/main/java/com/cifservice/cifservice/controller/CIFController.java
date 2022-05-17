@@ -1,9 +1,16 @@
 package com.cifservice.cifservice.controller;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import com.cifservice.cifservice.consumesoap.SoapClient;
+import com.cifservice.cifservice.model.entity.AccPerusahaan;
 import com.cifservice.cifservice.model.entity.CIFPerusahaan;
+import com.cifservice.cifservice.model.entity.Employee;
+import com.cifservice.cifservice.response.ResponseHandler;
 import com.cifservice.cifservice.service.CIFService;
 import com.cifservice.cifservice.stub.CUSTOMERIDICORPSHORTR1TWSNType;
 import com.cifservice.cifservice.stub.ObjectFactory;
@@ -25,6 +32,8 @@ import com.cifservice.cifservice.stub.CUSTOMERIDICORPSHORTR1TWSNType.GSTREET;
 import com.cifservice.cifservice.stub.CUSTOMERIDICORPSHORTR1TWSNType.GTAXID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +62,37 @@ public class CIFController {
     //     return cifPerusahaan;
     // }
 
+    @PostMapping(value = "/makeCIF")
+    public ResponseEntity<Object> makeCIF(@RequestBody(required = true) CIFPerusahaan cifPerusahaan){
+        validateCIF(cifPerusahaan);
+
+        String numId = randomID();
+        String date = getDateNow();
+        String time = getTimeNow();
+
+        cifPerusahaan.setId(numId);
+        while(cifService.findById(cifPerusahaan) != null){
+            numId = randomID();
+        }
+
+        cifPerusahaan.setId(numId);
+        cifPerusahaan.setStatus("1");
+        cifPerusahaan.setCifNo("");
+        // cifPerusahaan.setAccNo("");
+        cifPerusahaan.setUserCreatedDate(date);
+        cifPerusahaan.setUserCreatedTime(time);
+        cifPerusahaan.setUserCreatedByName(cifPerusahaan.getAccountOfficer());
+
+        CIFPerusahaan cifSaved = cifService.save(cifPerusahaan);
+        System.out.println(cifSaved.getCifNo());
+
+        if(cifSaved != null && cifSaved != null){
+            return ResponseHandler.generateResponse("Create CIF Success!", HttpStatus.OK, true, cifSaved);
+        }
+        return ResponseHandler.generateResponse("Create CIF Failed!", HttpStatus.OK, true, false);
+        
+    }
+
     @PostMapping(value = "/validateCIF")
     public PembukaanCustomerPerusahaanValidateResponse validateCIF(@RequestBody(required = true) CIFPerusahaan cifPerusahaan){
         
@@ -60,7 +100,6 @@ public class CIFController {
         PembukaanCustomerPerusahaanValidate pembukaanCustomerPerusahaanValidate = new PembukaanCustomerPerusahaanValidate();
         CUSTOMERIDICORPSHORTR1TWSNType customeridicorpshortr1twsnType = setCUSTOMERIDICORPSHORTR1TWSNType(cifPerusahaan);
 
-        // System.out.println("data user "+ cifPerusahaan.getNama());
         WebRequestCommon webRequestCommon = new WebRequestCommon();
         webRequestCommon.setUserName("TWSEXADEV");
         webRequestCommon.setPassword("123123");
@@ -76,15 +115,6 @@ public class CIFController {
         PembukaanCustomerPerusahaanValidateResponse pembukaanCustomerPerusahaanValidateResponse = soapClient.getCIFData("http://10.0.144.25:8180/iBSM_TWS/services", objectFactory.createPembukaanCustomerPerusahaanValidate(pembukaanCustomerPerusahaanValidate));
         System.out.println("CEK CEK "+ pembukaanCustomerPerusahaanValidateResponse.getStatus().getSuccessIndicator());
         System.out.println("CEK CEK 2 "+ pembukaanCustomerPerusahaanValidateResponse.getStatus().getMessages());
-        System.out.println(customeridicorpshortr1twsnType.getFIRSTREGDATE());
-        
-        try {
-            cifPerusahaan.setStatus("1");
-            CIFPerusahaan cifSaved = cifService.save(cifPerusahaan);
-            System.out.println(cifSaved.getCifNo());
-        } catch (Exception e) {
-                System.out.println("exception" +e);
-        }
 
         return pembukaanCustomerPerusahaanValidateResponse;
     }
@@ -113,13 +143,18 @@ public class CIFController {
         System.out.println("CEK CEK "+ pembukaanCustomerPerusahaanResponse.getStatus().getSuccessIndicator());
         System.out.println("CEK CEK 2 "+ pembukaanCustomerPerusahaanResponse.getStatus().getMessages());
 
-        try {
-            CIFPerusahaan cifData = cifService.findByTaxID(cifPerusahaan.getTaxID());
-            System.out.println("test " +cifData.getTaxID());
 
+        CIFPerusahaan cifData = cifService.findById(cifPerusahaan);
+
+        try {
             if (cifData != null){
                 cifData.setStatus("3");
                 cifData.setCifNo(pembukaanCustomerPerusahaanResponse.getCUSTOMERType().getId());
+
+                AccPerusahaan accData = setAccPerusahaan(cifData);
+
+                accData.setCifNo(cifData.getCifNo());
+                // accData.setUserApprovedTime(userApprovedTime);
 
                 cifService.updateNoCIF(cifData);
                 cifService.updateStatus(cifData);
@@ -240,5 +275,62 @@ public class CIFController {
         String.format("%09d", number);
         String idNumber = id + number;
         return idNumber;
+    }
+
+    public String randomID(){
+        Random random = new Random();
+        int num = random.nextInt(9999999);
+        String numStr = String.format("%05d", num);
+        return numStr;
+    }
+
+    public String getDateNow(){
+        Instant nowUtc = Instant.now();
+        ZoneId asiaJakarta = ZoneId.of("Asia/Jakarta");
+        ZonedDateTime nowAsiaJakarta = ZonedDateTime.ofInstant(nowUtc, asiaJakarta);
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedZdt = nowAsiaJakarta.format(formatter);
+        return formattedZdt;
+    }
+
+    public String getTimeNow(){
+        Instant nowUtc = Instant.now();
+        ZoneId asiaJakarta = ZoneId.of("Asia/Jakarta");
+        ZonedDateTime nowAsiaJakarta = ZonedDateTime.ofInstant(nowUtc, asiaJakarta);
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedZdt = nowAsiaJakarta.format(formatter);
+        return formattedZdt;
+    }
+
+    public AccPerusahaan setAccPerusahaan(CIFPerusahaan cifPerusahaan){
+        AccPerusahaan accPerusahaan = new AccPerusahaan();
+        System.out.println("aa "+cifPerusahaan.getId());
+
+        accPerusahaan.setId(cifPerusahaan.getId());
+        accPerusahaan.setAccNo("");
+        accPerusahaan.setAccountOfficer(cifPerusahaan.getAccountOfficer());
+        accPerusahaan.setAcOpenPurpose(cifPerusahaan.getAcOpenPurpose());
+        accPerusahaan.setAtm(cifPerusahaan.getAtm());
+        accPerusahaan.setBonus(cifPerusahaan.getBonus());
+        accPerusahaan.setCifNo(cifPerusahaan.getCifNo());
+        accPerusahaan.setCurrency(cifPerusahaan.getCurrency());
+        accPerusahaan.setMsgID(cifPerusahaan.getMsgID());
+        accPerusahaan.setPassbook(cifPerusahaan.getPassbook());
+        accPerusahaan.setPrintedName("");
+        accPerusahaan.setProductCode(cifPerusahaan.getProductCode());
+        accPerusahaan.setShortName(cifPerusahaan.getShortName());
+        accPerusahaan.setStatus("1");
+        accPerusahaan.setUserApprovedByName(cifPerusahaan.getUserApprovedByName());
+        accPerusahaan.setUserApprovedDate(cifPerusahaan.getUserApprovedDate());
+        accPerusahaan.setUserApprovedTime(cifPerusahaan.getUserApprovedTime());
+
+        accPerusahaan.setUserCreatedByName(cifPerusahaan.getUserCreatedByName());
+        accPerusahaan.setUserCreatedDate(cifPerusahaan.getUserCreatedDate());
+        accPerusahaan.setUserCreatedTime(cifPerusahaan.getUserCreatedTime());
+        
+        accPerusahaan.setZakat(cifPerusahaan.getZakat());
+        return accPerusahaan;
     }
 }

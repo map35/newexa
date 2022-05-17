@@ -1,6 +1,7 @@
 package com.cifservice.cifservice.service;
 
 import com.cifservice.cifservice.model.entity.CIFPerusahaan;
+import com.cifservice.cifservice.model.entity.Employee;
 import com.cifservice.cifservice.model.repo.AccRepo;
 import com.cifservice.cifservice.model.repo.CIFRepo;
 import com.cifservice.cifservice.stub.PembukaanCustomerPerusahaanValidateResponse;
@@ -24,9 +25,9 @@ public class CIFService {
         return null;
     }
 
-    public CIFPerusahaan findByTaxID(String taxID){
+    public CIFPerusahaan findById(CIFPerusahaan cifPerusahaan){
         // System.out.println("controller "+ cifPerusahaan.getTaxID());
-        CIFPerusahaan cifData = cifRepo.findByTaxID(taxID);
+        CIFPerusahaan cifData = cifRepo.findById(cifPerusahaan.getId());
         if(cifData != null){
             return cifData;
         }
@@ -34,7 +35,7 @@ public class CIFService {
     }
 
     public boolean updateNoCIF(CIFPerusahaan cifPerusahaan){
-        int updateCIF = cifRepo.updateCIF(cifPerusahaan.getCifNo(), cifPerusahaan.getTaxID());
+        int updateCIF = cifRepo.updateCIF(cifPerusahaan.getCifNo(), cifPerusahaan.getId());
         if(updateCIF == 1){
             return true;
         }
@@ -42,52 +43,25 @@ public class CIFService {
     }
 
     public boolean updateStatus(CIFPerusahaan cifPerusahaan){
-        int updateStatus = cifRepo.updateStatus(cifPerusahaan.getStatus(), cifPerusahaan.getTaxID());
+        int updateStatus = cifRepo.updateStatus(cifPerusahaan.getStatus(), cifPerusahaan.getId());
         if(updateStatus == 1){
             return true;
         }
         return false;
     }
-    
-    // public CIFPerusahaan save(CIFPerusahaan cifPerusahaan) {
-        
-    //     CIFPerusahaan cifSaved = cifRepo.save(cifPerusahaan);
-    //     if(cifSaved != null){
-    //         return cifSaved;
-    //     }
-    //     return null;
+
+    // public Employee findByUsername(String username) {
+    //     // TODO Auto-generated method stub
+    //     Employee employee = new Employee();
+    //     employee.setUsername(username);
+    //     System.out.println("cek cek "+username);
+    //     Employee employeeData = restTemplate.postForObject(  "http://localhost:9003/employee/getuserdata", employee, Employee.class);
+    //     return employeeData;
     // }
 
-    // public CIFPerusahaan findById(CIFPerusahaan cifPerusahaan) {
-        
-    //     CIFPerusahaan cifPerusahaanData = cifRepo.findById(cifPerusahaan.getId());
-    //     if(cifPerusahaanData != null){
-    //         return cifPerusahaanData;
-    //     }
-    //     return null;
-    // }
+    // public PembukaanCustomerPerusahaanValidateResponse validateCIF(CIFPerusahaan CIFPerusahaan) {
 
-    // public boolean updateNoCIF(CIFPerusahaan cifPerusahaan) {
-        
-    //     int cifUpdate = cifRepo.updateCIFNumber(CIFPerusahaan.getCIF(), CIFPerusahaan.getId());
-    //     if(cifUpdate == 1){
-    //         return true;
-    //     }
-    //     return false;
+    //     PembukaanCustomerPerusahaanValidateResponse cifPerusahaanDataValidateResponse = restTemplate.postForObject(  "http://localhost:9099/tws/validateCIF", CIFPerusahaan, PembukaanCustomerPerusahaanValidateResponse.class);
+    //     return cifPerusahaanDataValidateResponse;
     // }
-    
-    // public boolean updateStatusCIF(CIFPerusahaan cifPerusahaan) {
-        
-    //     int cifUpdate = cifRepo.updateCIFStatus(cifPerusahaan.getCIF(), cifPerusahaan.getId());
-    //     if(cifUpdate == 1){
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    public PembukaanCustomerPerusahaanValidateResponse validateCIF(CIFPerusahaan CIFPerusahaan) {
-
-        PembukaanCustomerPerusahaanValidateResponse cifPerusahaanDataValidateResponse = restTemplate.postForObject(  "http://localhost:9099/tws/validateCIF", CIFPerusahaan, PembukaanCustomerPerusahaanValidateResponse.class);
-        return cifPerusahaanDataValidateResponse;
-    }
 }

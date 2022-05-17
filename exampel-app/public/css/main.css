@@ -91,6 +91,13 @@ input {
     outline: none;
     border: none;
 }
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:invalid:focus {
+    background-image: linear-gradient(red, white);
+}  
 
 input[type="number"] {
     -moz-appearance: textfield;

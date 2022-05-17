@@ -73,7 +73,7 @@ class CIFController extends Controller
             $legalExpDate4String = ["","",""];
         }
 
-        $response = Http::post('http://localhost:9001/cif/validateCIF', [
+        $response = Http::post('http://localhost:9001/cif/makeCIF', [
             "businessType"=> $request->businessType,
             "districtCode"=> $request->districtCode,
             "firstRegNo"=> $request->firstRegNo,

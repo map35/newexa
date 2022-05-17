@@ -13,13 +13,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CIFRepo extends JpaRepository<CIFPerusahaan, Integer> {
 
-    CIFPerusahaan findByTaxID(String taxID);
+    CIFPerusahaan findById(String id);
 
     @Modifying
     @Query(value = " update reg_cif_corp c set c.cifno = ? where c.id = ? " , nativeQuery = true)
-    int updateCIF(String cifNo, String taxID);
+    int updateCIF(String cifNo, String id);
 
     @Modifying
     @Query(value = " update reg_cif_corp c set c.status = ? where c.id = ? " , nativeQuery = true)
-    int updateStatus(String status, String taxID);
+    int updateStatus(String status, String id);
 }

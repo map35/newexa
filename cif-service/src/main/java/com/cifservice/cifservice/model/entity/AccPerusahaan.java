@@ -13,7 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "reg_cif_account")
+// @Table(name = "reg_cif_account")
+@Table(name = "new_reg_cif_account")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,6 +42,18 @@ public class AccPerusahaan {
 
     public void setProductCode(String productCode) {
         this.productCode = productCode;
+    }
+
+    // Printed Name
+    @Column(name = "PRINTEDNAME")
+	private String printedName;
+
+    public String getPrintedName() {
+        return this.printedName;
+    }
+
+    public void setPrintedName(String printedName) {
+        this.printedName = printedName;
     }
 
     // Penduduk = RESIDE.Y.N
@@ -333,25 +346,25 @@ public class AccPerusahaan {
 
     // user created date
     @Column(name = "USER_CREATED_DATE")
-	private Date userCreatedDate;
+	private String userCreatedDate;
 
-    public Date getUserCreatedDate() {
+    public String getUserCreatedDate() {
         return this.userCreatedDate;
     }
 
-    public void setUserCreatedDate(Date userCreatedDate) {
+    public void setUserCreatedDate(String userCreatedDate) {
         this.userCreatedDate = userCreatedDate;
     }
 
     // user created time
     @Column(name = "USER_CREATED_TIME")
-	private Time userCreatedTime;
+	private String userCreatedTime;
 
-    public Time getUserCreatedTime() {
+    public String getUserCreatedTime() {
         return this.userCreatedTime;
     }
 
-    public void setUserCreatedTime(Time userCreatedTime) {
+    public void setUserCreatedTime(String userCreatedTime) {
         this.userCreatedTime = userCreatedTime;
     }
 

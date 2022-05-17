@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CIFRepo extends JpaRepository<CIFPerusahaan, Integer> {
 
-    
+    CIFPerusahaan findById(String id);
 }

@@ -12,7 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "reg_cif_corp")
+// @Table(name = "reg_cif_corp")
+@Table(name = "new_reg_cif_corp")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,14 +21,14 @@ public class CIFPerusahaan {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    // @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private String id;
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -485,5 +486,181 @@ public class CIFPerusahaan {
 
     public void setTaxID(String taxID) {
         this.taxID = taxID;
+    }
+
+    // Currency // IDR
+    @Column(name = "CURRENCY")
+	private String currency;
+
+    public String getCurrency() {
+        return this.currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    // Zakat = ZAKAT
+    @Column(name = "ZAKAT")
+	private String zakat;
+
+    public String getZakat() {
+        return this.zakat;
+    }
+
+    public void setZakat(String zakat) {
+        this.zakat = zakat;
+    }
+
+    // BONUS
+    @Column(name = "BONUS")
+	private String bonus;
+
+    public String getBonus() {
+        return this.bonus;
+    }
+
+    public void setBonus(String bonus) {
+        this.bonus = bonus;
+    }
+
+    // ATM
+    @Column(name = "ATM")
+	private String atm;
+
+    public String getAtm() {
+        return this.atm;
+    }
+
+    public void setAtm(String atm) {
+        this.atm = atm;
+    }
+
+    // Passbook // ?
+    @Column(name = "PASSBOOK")
+	private String passbook;
+
+    public String getPassbook() {
+        return this.passbook;
+    }
+
+    public void setPassbook(String passbook) {
+        this.passbook = passbook;
+    }
+    
+    // Tujuan Buka Rekening = AC.OPEN.PURPOSE
+    @Column(name = "ACOPENPURPOSE")
+	private String acOpenPurpose;
+
+    public String getAcOpenPurpose() {
+        return this.acOpenPurpose;
+    }
+
+    public void setAcOpenPurpose(String acOpenPurpose) {
+        this.acOpenPurpose = acOpenPurpose;
+    }
+
+    // Account Officer = Account.Officer
+    @Column(name = "ACCOUNTOFFICER")
+	private String accountOfficer;
+
+    public String getAccountOfficer() {
+        return this.accountOfficer;
+    }
+
+    public void setAccountOfficer(String accountOfficer) {
+        this.accountOfficer = accountOfficer;
+    }
+
+    // Mesage ID
+    @Column(name = "MSGID")
+	private String msgID;
+
+    public String getMsgID() {
+        return this.msgID;
+    }
+
+    public void setMsgID(String msgID) {
+        this.msgID = msgID;
+    }
+
+    // user created by name
+    @Column(name = "USER_CREATED_BY_NAME")
+	private String userCreatedByName;
+
+    public String getUserCreatedByName() {
+        return this.userCreatedByName;
+    }
+
+    public void setUserCreatedByName(String userCreatedByName) {
+        this.userCreatedByName = userCreatedByName;
+    }
+
+    // user created date
+    @Column(name = "USER_CREATED_DATE")
+	private String userCreatedDate;
+
+    public String getUserCreatedDate() {
+        return this.userCreatedDate;
+    }
+
+    public void setUserCreatedDate(String userCreatedDate) {
+        this.userCreatedDate = userCreatedDate;
+    }
+
+    // user created time
+    @Column(name = "USER_CREATED_TIME")
+	private String userCreatedTime;
+
+    public String getUserCreatedTime() {
+        return this.userCreatedTime;
+    }
+
+    public void setUserCreatedTime(String userCreatedTime) {
+        this.userCreatedTime = userCreatedTime;
+    }
+
+    // user approved by name
+    @Column(name = "USER_APPROVED_BY_NAME")
+	private String userApprovedByName;
+
+    public String getUserApprovedByName() {
+        return this.userApprovedByName;
+    }
+
+    public void setUserApprovedByName(String userApprovedByName) {
+        this.userApprovedByName = userApprovedByName;
+    }
+
+    // user approved date
+    @Column(name = "USER_APPROVED_DATE")
+	private String userApprovedDate;
+
+    public String getUserApprovedDate() {
+        return this.userApprovedDate;
+    }
+
+    public void setUserApprovedDate(String userApprovedDate) {
+        this.userApprovedDate = userApprovedDate;
+    }
+
+    // user approved time
+    @Column(name = "USER_APPROVED_TIME")
+	private String userApprovedTime;
+
+    public String getUserApprovedTime() {
+        return this.userApprovedTime;
+    }
+
+    public void setUserApprovedTime(String userApprovedTime) {
+        this.userApprovedTime = userApprovedTime;
+    }
+
+    // Sumber dana = FUND.SOURCE
+    @Column(name = "FUNDSOURCE")
+	private String fundSource;
+
+    public String getFundSource() {
+        return this.fundSource;
     }
 }
