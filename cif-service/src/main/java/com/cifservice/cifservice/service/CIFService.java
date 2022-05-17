@@ -1,5 +1,6 @@
 package com.cifservice.cifservice.service;
 
+import com.cifservice.cifservice.model.entity.AccPerusahaan;
 import com.cifservice.cifservice.model.entity.CIFPerusahaan;
 import com.cifservice.cifservice.model.entity.Employee;
 import com.cifservice.cifservice.model.repo.AccRepo;
@@ -26,8 +27,10 @@ public class CIFService {
     }
 
     public CIFPerusahaan findById(CIFPerusahaan cifPerusahaan){
-        // System.out.println("controller "+ cifPerusahaan.getTaxID());
+        System.out.println("controller "+ cifRepo.findById(cifPerusahaan.getId()));
         CIFPerusahaan cifData = cifRepo.findById(cifPerusahaan.getId());
+        // System.out.println("controller "+ cifData.getTaxID());
+
         if(cifData != null){
             return cifData;
         }
@@ -48,6 +51,28 @@ public class CIFService {
             return true;
         }
         return false;
+    }
+
+    public boolean updateDate(CIFPerusahaan cifPerusahaan) {
+        int updatecif = cifRepo.updateCIFDate(cifPerusahaan.getUserApprovedDate(), cifPerusahaan.getId());
+        if(updatecif == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateTime(CIFPerusahaan cifPerusahaan) {
+        int updatecif = cifRepo.updateCIFTime(cifPerusahaan.getUserApprovedTime(), cifPerusahaan.getId());
+        if(updatecif == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean authorMudharabahAccount(AccPerusahaan accPerusahaan) {
+        // TODO Auto-generated method stub
+        Boolean openAccountMudharabahResponse = restTemplate.postForObject(  "http://localhost:9002/acc/authormudharabahaccountwithcif", accPerusahaan, Boolean.class);
+        return openAccountMudharabahResponse;
     }
 
     // public Employee findByUsername(String username) {

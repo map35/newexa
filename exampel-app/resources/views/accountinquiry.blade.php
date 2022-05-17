@@ -369,16 +369,13 @@
                             for( var i = 0; i<len; i++){
                                 var row = i+1;
                             
-                                if(response.data[i].status == "3"){
+                                if(response.data[i].status != ""){
                                     console.log(response.data[i].shortName);
                                     console.log(response.data[i].productCode);
                                     console.log(response.data[i].cifNo);
                                     
-                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' + " ");
-                                    
-                                }else if(response.data[i].status == "9"){
-                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' + " ");
-                                }      
+                                    $('#account_data_tbl').append('<tr> <td>' + row + '</td>  <td>' + response.data[i].shortName + '</td> <td>' + response.data[i].productCode + '</td> <td>' + response.data[i].cifNo  + '</td> <td>' + response.data[i].accNo+ '</td> <td>' + response.data[i].acOpenPurpose + '</td> <td>' + response.data[i].status+ '</td> <td>' + response.data[i].userCreatedDate + " / "+ response.data[i].userCreatedTime + " / " +response.data[i].userCreatedByName +'</td> <td>' +response.data[i].userApprovedDate + " / "+ response.data[i].userApprovedTime + " / " +response.data[i].userApprovedByName +'</td> <td>' + " ");    
+                                }     
                             }
                         }
                     }else{

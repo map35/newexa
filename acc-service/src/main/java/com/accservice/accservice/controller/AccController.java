@@ -126,6 +126,7 @@ public class AccController {
 
             accPerusahaan.setStatus("3");
             accPerusahaan.setAccNo(openAccountMudharabahResponse.getACCOUNTType().getId());
+            // accPerusahaan.setAccNo(randomAccount());
             accPerusahaan.setUserApprovedDate(date);
             accPerusahaan.setUserApprovedTime(time);
             accPerusahaan.setUserApprovedByName(accPerusahaan.getAccountOfficer());
@@ -144,6 +145,7 @@ public class AccController {
             && updateUserApprovedByName){
                 return ResponseHandler.generateResponse("Authorization Account Success!", HttpStatus.OK, true, true);
             }
+            // Keluar sini harusnya ajg
            
             return ResponseHandler.generateResponse("Authorization Account Failed!", HttpStatus.OK, true, true);
         
@@ -202,6 +204,61 @@ public class AccController {
 
         return openAccountMudharabahResponse;
 
+    }
+
+    @PostMapping(value = "/authormudharabahaccountwithcif")
+    public boolean authorMudharabahAccountNewCIF(@RequestBody(required = true) AccPerusahaan AccPerusahaan){
+        
+            // System.out.print("cekk pegawai "+AccPerusahaan.getUsername());
+            // System.out.println("CEKKKKK ACCOUNT-TWS SERVICE HIT");
+            // OpenAccountMudharabahResponse openAccountMudharabahResponse =  accountService.authorMudharabahAccounttoTWS(AccPerusahaan);
+            // System.out.println("CEKKKKK AFTER ACCOUNT-TWS SERVICE HIT");
+
+            // if(!openAccountMudharabahResponse.getStatus().getSuccessIndicator().toString().equals("SUCCESS")){
+            //     return false;
+            // }
+            // System.out.println(AccPerusahaan.getCurrency());
+            // Employee employeeData = accountService.findByUsername(AccPerusahaan.getUsername());
+            // if(employeeData==null){
+            //     return false;
+            // }
+            // if(!employeeData.getRole().equals("CSS") && !employeeData.getRole().equals("BOSM") && !employeeData.getRole().equals("BM")  ){
+            //     // boolean is_success = false;
+            //     return false;
+            // }
+            System.out.println(AccPerusahaan.getId());
+            AccPerusahaan AccPerusahaan2 = accService.findById(AccPerusahaan);
+            
+            if(AccPerusahaan2 == null){
+                return false;
+            }
+            String date = getDateNow();
+            String time = getTimeNow();
+            AccPerusahaan2.setStatus("3");
+            // AccPerusahaan2.setAccountNo(openAccountMudharabahResponse.getACCOUNTType().getId());
+            AccPerusahaan2.setAccNo(randomAccount());
+            AccPerusahaan2.setCifNo(AccPerusahaan.getCifNo());
+            AccPerusahaan2.setUserApprovedDate(date);
+            AccPerusahaan2.setUserApprovedTime(time);
+            // AccPerusahaan2.setUserApprovedByName(employeeData.getName());
+            boolean updateCifNumber = accService.updateCIFNumber(AccPerusahaan2);
+            boolean updateAccountNumber = accService.updateAccountNo(AccPerusahaan2);
+            boolean updateAccountStatus = accService.updateAccountStatus(AccPerusahaan2);
+            boolean updateAccountDate = accService.updateAccountDate(AccPerusahaan2);
+            boolean updateAccountTime = accService.updateAccountTime(AccPerusahaan2);
+            boolean updateUserApprovedByName = accService.updateUserApprovedByName(AccPerusahaan2);
+
+            if(updateCifNumber 
+            && updateAccountNumber 
+            && updateAccountStatus 
+            && updateAccountDate
+            && updateAccountTime
+            && updateUserApprovedByName ){
+                return true;
+            }
+           
+            return false;
+        
     }
 
     @GetMapping(value = "/getallaccount")
@@ -318,6 +375,15 @@ public class AccController {
         int num = random.nextInt(9999999);
         String numStr = String.format("%05d", num);
         return numStr;
+    }
+
+    public String randomAccount(){
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999999);
+        String id = "7";
+        String.format("%09d", number);
+        String idNumber =  id + number;
+        return idNumber;
     }
 
     public String getDateNow(){

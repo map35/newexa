@@ -11,6 +11,7 @@ import com.cifservice.cifservice.model.entity.AccPerusahaan;
 import com.cifservice.cifservice.model.entity.CIFPerusahaan;
 import com.cifservice.cifservice.model.entity.Employee;
 import com.cifservice.cifservice.response.ResponseHandler;
+import com.cifservice.cifservice.service.AccService;
 import com.cifservice.cifservice.service.CIFService;
 import com.cifservice.cifservice.stub.CUSTOMERIDICORPSHORTR1TWSNType;
 import com.cifservice.cifservice.stub.ObjectFactory;
@@ -46,6 +47,7 @@ public class CIFController {
     
     @Autowired SoapClient soapClient;
     @Autowired CIFService cifService;
+    @Autowired AccService accService;
 
     // @PostMapping(value = "/coba")
     // public CIFPerusahaan coba(@RequestBody(required =  true) CIFPerusahaan cifPerusahaan){
@@ -83,14 +85,27 @@ public class CIFController {
         cifPerusahaan.setUserCreatedTime(time);
         cifPerusahaan.setUserCreatedByName(cifPerusahaan.getAccountOfficer());
 
-        CIFPerusahaan cifSaved = cifService.save(cifPerusahaan);
-        System.out.println(cifSaved.getCifNo());
+        AccPerusahaan accPerusahaan = setAccPerusahaan(cifPerusahaan);
+
+        accPerusahaan.setId(numId);
+        accPerusahaan.setStatus("1");
+        accPerusahaan.setCifNo("");
+        accPerusahaan.setAccNo("");
+        accPerusahaan.setUserCreatedDate(date);
+        accPerusahaan.setUserCreatedTime(time);
+        accPerusahaan.setUserCreatedByName(cifPerusahaan.getAccountOfficer());
+
+        if(cifPerusahaan.getTaxID() != null){
+            CIFPerusahaan cifSaved = cifService.save(cifPerusahaan);
+            AccPerusahaan accSaved = accService.save(accPerusahaan);
+            System.out.println(cifSaved.getCifNo());
 
         if(cifSaved != null && cifSaved != null){
             return ResponseHandler.generateResponse("Create CIF Success!", HttpStatus.OK, true, cifSaved);
         }
-        return ResponseHandler.generateResponse("Create CIF Failed!", HttpStatus.OK, true, false);
         
+        }
+        return ResponseHandler.generateResponse("Create CIF Failed!", HttpStatus.OK, true, false);
     }
 
     @PostMapping(value = "/validateCIF")
@@ -117,6 +132,80 @@ public class CIFController {
         System.out.println("CEK CEK 2 "+ pembukaanCustomerPerusahaanValidateResponse.getStatus().getMessages());
 
         return pembukaanCustomerPerusahaanValidateResponse;
+    }
+
+    @PostMapping(value = "/cifauthorization")
+    public ResponseEntity<Object> authorizationCIF(@RequestBody(required = true) CIFPerusahaan cifPerusahaan){
+        
+        System.out.println(cifPerusahaan.getId());
+        // Employee employeeData = cifService.findByUsername(cifPerusahaan.getUsername());
+        // if(employeeData==null){
+        //     boolean is_success = false;
+        //     return ResponseHandler.generateResponse("Username cannot found!", HttpStatus.OK, true, is_success);
+        // }
+        // if(!employeeData.getRole().equals("CSS") && !employeeData.getRole().equals("BOSM") && !employeeData.getRole().equals("BM") ){
+        //     boolean is_success = false;
+        //     return ResponseHandler.generateResponse("Your Role Cannot do this action!", HttpStatus.OK, true, is_success);
+        // }
+
+        CIFPerusahaan cifPerusahaan1 = cifService.findById(cifPerusahaan);
+
+        // System.out.println("CEKKKKK TWS SERVICE HIT");
+        // WEBSERVICECUSTOMERSHORTResponse webservicecustomershortResponse =  cifService.authorCIFtoTWS(cifPerusahaan);
+        // if(webservicecustomershortResponse.getCUSTOMERType() == null){ 
+        //     return ResponseHandler.generateResponse("TWS ERROR!", HttpStatus.OK, true, webservicecustomershortResponse.getStatus().getMessageId());
+        // }
+        
+        PembukaanCustomerPerusahaanResponse pembukaanCustomerPerusahaanResponse = authorCIF(cifPerusahaan);
+
+        System.out.println("CEKKKKK AFTER TWS SERVICE HIT");
+        System.out.println(cifPerusahaan1.getTaxID());
+
+        String date = getDateNow();
+        String time = getTimeNow();
+        
+        cifPerusahaan1.setStatus("3");
+        cifPerusahaan1.setCifNo(pembukaanCustomerPerusahaanResponse.getCUSTOMERType().getId());
+        cifPerusahaan1.setCifNo(randomCIF());
+        cifPerusahaan1.setUserApprovedDate(date);
+        cifPerusahaan1.setUserApprovedTime(time);
+        // cifPerusahaan1.setUserApprovedByName(employeeData.getName());
+
+        AccPerusahaan accPerusahaan = setAccPerusahaan(cifPerusahaan1);
+       
+        // System.out.println("1 " +accPerusahaan.getId());
+        // System.out.println("2 " + accPerusahaan.getCifNo());
+
+        accPerusahaan.setId(cifPerusahaan.getId());
+        accPerusahaan.setUserApprovedDate(date);
+        accPerusahaan.setUserApprovedTime(time);
+        // accPerusahaan.setUserApprovedByName(employeeData.getName());
+        // accPerusahaan.setUsername(employeeData.getUsername());
+
+        // if(webservicecustomershortResponse.getStatus().getSuccessIndicator().toString().equals("SUCCESS")){
+
+        cifService.updateNoCIF(cifPerusahaan1);
+        cifService.updateStatus(cifPerusahaan1);
+        cifService.updateDate(cifPerusahaan1);
+        cifService.updateTime(cifPerusahaan1);
+
+        // cifService.updateUserApprovedByName(cifPerusahaan1);
+        // }else{
+        //     accPerusahaan.setStatus("Authorization CIF failed");
+        //     cifService.updateAccountStatus(accPerusahaan);
+        //     return ResponseHandler.generateResponse("TWS ERROR!", HttpStatus.OK, true, webservicecustomershortResponse.getStatus().getMessages());
+        // }
+
+        // System.out.println("CEKKKKK TWS SERVICE author mudharabah HIT");
+        Boolean openAccountMudharabahResponse =  cifService.authorMudharabahAccount(accPerusahaan);
+        // System.out.println("CEKKKKK AFTER TWS SERVICE author mudharabah HIT");
+
+        if(!openAccountMudharabahResponse){
+
+            return ResponseHandler.generateResponse("CIF Authorization Failed!", HttpStatus.OK, true, false);
+        }
+       
+        return ResponseHandler.generateResponse("CIF Authorization Sucess!", HttpStatus.OK, true, true);
     }
 
     @PostMapping(value = "/authorCIF")
@@ -282,6 +371,14 @@ public class CIFController {
         int num = random.nextInt(9999999);
         String numStr = String.format("%05d", num);
         return numStr;
+    }
+
+    public String randomCIF(){
+        Random rnd = new Random();
+        int number = rnd.nextInt(99999999);
+        String.format("%08d", number);
+        String idNumber = Integer.toString(number);
+        return idNumber;
     }
 
     public String getDateNow(){
